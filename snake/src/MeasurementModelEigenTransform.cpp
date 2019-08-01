@@ -22,15 +22,18 @@ using namespace std;
 	ros::Publisher imu2pose_pub;
 	ros::Publisher imu3pose_pub;
 	
+	//Specify the positions of the imus relative to the joint frames
 	Vector4d imu1(0.25,0.0,0.0,1.0);
 	Vector4d imu2(0.25,0.0,0.0,1.0);
 	Vector4d imu3(0.25,0.0,0.0,1.0);
 
+	//Initialize empty vectors for positions of vectors
 	Vector4d imu1Position(0.0,0.0,0.0,0.0);
 	Vector4d imu2Position(0.0,0.0,0.0,0.0);
 	Vector4d imu3Position(0.0,0.0,0.0,0.0);
 
-//Gets called whenever a new joint angle is recieved
+
+////Gets called whenever a new joint angle is recieved
 void imuMatrix(const sensor_msgs::JointState msg)
 {
 ////Fill message headers
@@ -68,12 +71,14 @@ void imuMatrix(const sensor_msgs::JointState msg)
 	imu3Position = imu3Transform*imu3;
 	Quaternion<double> imu3Orientation(imu3Transform.rotation()); 
 	
-//Fill messages
+////Fill messages
+	//imu1
 	imu1pose.pose.position.x = imu1Position(0,0);
 	imu1pose.pose.position.y = imu1Position(1,0);
 	imu1pose.pose.position.z = imu1Position(2,0);
 	imu1pose_pub.publish(imu1pose);
 
+	//imu2
 	imu2pose.pose.position.x = imu2Position(0,0);
 	imu2pose.pose.position.y = imu2Position(1,0);
 	imu2pose.pose.position.z = imu2Position(2,0);
@@ -83,6 +88,7 @@ void imuMatrix(const sensor_msgs::JointState msg)
 	imu2pose.pose.orientation.w = imu2Orientation.w();
 	imu2pose_pub.publish(imu2pose);
 
+	//imu3
 	imu3pose.pose.position.x = imu3Position(0,0);
 	imu3pose.pose.position.y = imu3Position(1,0);
 	imu3pose.pose.position.z = imu3Position(2,0);
