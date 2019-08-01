@@ -1,0 +1,122 @@
+<robot name="snake">
+	<!-- LINKS -->
+	<link name="link1">
+		<visual>
+			<origin xyz=".25 0 0" rpy="0 1.57 0" />
+			<geometry>
+				<cylinder radius=".1" length="0.4" />
+			</geometry>
+			<material name="red">
+				<color rgba="1.0 0 0 .5" />
+			</material>
+		</visual>
+	</link>
+	<link name="link2">
+		<visual>
+			<origin xyz=".25 0 0" rpy="0 1.57 0" />
+			<geometry>
+				<cylinder radius=".1" length="0.4" />
+			</geometry>
+			<material name="red">
+				<color rgba="1.0 0 0 .5" />
+			</material>
+		</visual>
+	</link>
+	<link name="link3">
+		<visual>
+			<origin xyz=".25 0 0" rpy="0 1.57 0" />
+			<geometry>
+				<cylinder radius=".1" length="0.4" />
+			</geometry>
+			<material name="red">
+				<color rgba="1.0 0 0 .5" />
+			</material>
+		</visual>
+	</link>
+
+	<!-- JOINTS -->
+	<joint name="joint1p" type="continuous">
+		<parent link="link1"/>
+		<child link="joint1"/>
+		<origin xyz=".5 0 0" rpy="-1.57 0 0"/>
+		<axis xyz="0 0 1"/>
+	</joint>
+	<link name="joint1"/>
+	<joint name="joint1y" type="continuous">
+		<parent link="joint1"/>
+		<child link="link2"/>
+		<origin xyz="0 0 0" rpy="1.57 0 0"/>
+		<axis xyz="0 0 1"/>
+	</joint>
+
+	<joint name="joint2p" type="continuous">
+		<parent link="link2"/>
+		<child link="joint2"/>
+		<origin xyz=".5 0 0" rpy="-1.57 0 0"/>
+		<axis xyz="0 0 1"/>
+	</joint>
+	<link name="joint2"/>
+	<joint name="joint2y" type="continuous">
+		<parent link="joint2"/>
+		<child link="link3"/>
+		<origin xyz="0 0 0" rpy="1.57 0 0"/>
+		<axis xyz="0 0 1"/>
+	</joint>
+
+
+	<!--IMU's-->
+	<link name="imu1">
+		 <visual>
+			 <origin xyz="0 0 0" rpy="0 0 0" />
+			 <geometry>
+				<box size="0.05 0.05 0.05" />
+			 </geometry>
+			 <material name="green">
+				<color rgba="0 1.0 0 1.0" />
+			 </material>
+		 </visual>
+	</link>
+	<joint name="imu1placement" type="fixed">
+		<axis xyz="0 0 0" />
+		<origin xyz="0.25 0 0" />
+		<parent link="link1" />
+		<child link="imu1" />
+	</joint>
+
+	<link name="imu2position">
+                <visual>
+                        <origin xyz="0 0 0" rpy="0 0 0" />
+                        <geometry>
+                                <box size="0.05 0.05 0.05" />
+                        </geometry>
+                        <material name="green">
+                                <color rgba="0 1.0 0 1.0" />
+                        </material>
+                </visual>
+        </link>
+        <joint name="imu2placement" type="fixed">
+                <axis xyz="0 0 0" />
+                <origin xyz="0.25 0 0" />
+                <parent link="link2" />
+                <child link="imu2position" />
+        </joint>
+
+	<link name="imu3">
+                 <visual>
+                        <origin xyz="0 0 0" rpy="0 0 0" />
+                        <geometry>
+                                <box size="0.05 0.05 0.05" />
+                        </geometry>
+                        <material name="green">
+                                <color rgba="0 1.0 0 1.0" />
+                        </material>
+                </visual>
+        </link>
+        <joint name="imu3placement" type="fixed">
+                <axis xyz="0 0 0" />
+                <origin xyz="0.25 0 0" />
+                <parent link="link3" />
+                <child link="imu3" />
+        </joint>
+
+</robot>

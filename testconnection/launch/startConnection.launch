@@ -1,0 +1,56 @@
+<launch>
+
+<machine
+  name="BBB1"
+  address="BBB1"
+  env-loader="~/catkin_ws/env.sh"
+  user="debian"
+  password="temppwd"
+/>
+
+<machine
+  name="BBB2"
+  address="BBB2"
+  env-loader="~/catkin_ws/env.sh"
+  user="debian"
+  password="temppwd"
+/>
+
+<machine 
+  name="BBB3"
+  address="BBB3"
+  env-loader="~/catkin_ws/env.sh"
+  user="debian"
+  password="temppwd"
+/>
+
+
+
+<node
+  machine="BBB1"
+  pkg="testconnection"
+  type="listener"
+  name="listenerNode1"
+  ns="BBB1"
+/>
+
+<node
+  machine="BBB2"
+  pkg="testconnection"
+  type="talker"
+  name="talkerNode2"
+  ns="BBB2"
+/>
+
+<!--
+<node
+  machine="BBB3"
+  pkg="testconnection"
+  type="talker"
+  name="talkerNode3"
+  ns="BBB3" 
+/>
+-->
+
+</launch>
+

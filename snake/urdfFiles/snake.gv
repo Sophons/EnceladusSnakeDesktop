@@ -1,0 +1,11 @@
+digraph G {
+node [shape=box];
+"link1" [label="link1"];
+"link2" [label="link2"];
+"link2" [label="link2"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"link1" -> "joint2" [label="xyz: 0 0.15 0 \nrpy: 0 -0 0"]
+"joint2" -> "link2"
+"link1" -> "joint2" [label="xyz: 0 0.15 0 \nrpy: 0 -0 0"]
+"joint2" -> "link2"
+}
