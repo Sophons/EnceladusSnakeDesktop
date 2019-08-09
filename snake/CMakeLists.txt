@@ -105,7 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES snake
   CATKIN_DEPENDS
 	roscpp
@@ -121,10 +121,12 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
   ${catkin_INCLUDE_DIRS}
 )
 
+include_directories(
+  include
+)
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/snake.cpp
@@ -141,14 +143,21 @@ include_directories(
  add_executable(fake_state_pub src/fake_state_pub.cpp)
  target_link_libraries(fake_state_pub ${catkin_LIBRARIES})
 
- add_executable(imuPosOri src/imuPosOri.cpp)
- target_link_libraries(imuPosOri ${catkin_LIBRARIES})
+ #add_executable(imuPosOri src/imuPosOri.cpp)
+ #target_link_libraries(imuPosOri ${catkin_LIBRARIES})
  
- add_executable(MeasurementModelDH src/MeasurementModelDH.cpp)
- target_link_libraries(MeasurementModelDH ${catkin_LIBRARIES} -I/usr/include/eigen3)
+ #add_executable(MeasurementModelDH src/MeasurementModelDH.cpp)
+ #target_link_libraries(MeasurementModelDH ${catkin_LIBRARIES} -I/usr/include/eigen3)
 
  add_executable(MeasurementModelEigenTransform src/MeasurementModelEigenTransform.cpp)
  target_link_libraries(MeasurementModelEigenTransform ${catkin_LIBRARIES} -I/usr/include/eigen3)
+
+ 
+ add_executable(BBBMain src/BBBMain.cpp  src/CaseyControl.cpp  src/TrajPlanner.cpp   src/CaseyControl.h  src/TrajPlanner.h)
+ target_link_libraries(BBBMain ${catkin_LIBRARIES}  )
+
+ add_executable(SnakeCommander src/SnakeCommander.cpp  )
+ target_link_libraries(SnakeCommander ${catkin_LIBRARIES}  )
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

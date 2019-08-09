@@ -17,18 +17,18 @@
 
   <!-- ROBOT STATE PUBLISHER -->
 	<node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub">
-		<remap from="joint_states" to="joint1_state" /> 
+		<remap from="joint_states" to="JointState" /> 
 	</node>
 	<param name="robot_description" command="cat $(find snake)/urdfFiles/snake.urdf" />
 
 	<node pkg="tf" type="static_transform_publisher" name="link1_tf_publisher" args="0 0 0 0 0 0 odom link1 10"/>
-	<node pkg="snake" type="fake_state_pub" name="fake_state_pub" />
+	<!-- <node pkg="snake" type="fake_state_pub" name="fake_state_pub" /> -->
 
-	<node pkg="rviz" type="rviz" name="rviz" />
+	<node pkg="rviz" type="rviz" name="rviz" /> 
 
 
   <!-- IMU LAUNCHING -->
-  <!--
+<!--
 	<group ns="BBB2">
 		<node machine="BBB2" pkg="testconnection" type="madIMU" name="madIMU" >
 			<param name="linAcc_covar" value="$(arg linAcc_covar)" />
@@ -49,6 +49,22 @@
 -->
 
  <!-- FILTER STUFFS -->
-	<node pkg="snake" type="MeasurementModelEigenTransform" name="MeasurementModelEigenTransform" output="screen"/>
+	<!-- <node pkg="snake" type="MeasurementModelEigenTransform" name="MeasurementModelEigenTransform" output="screen"/> -->
 
+ <!-- CONTROL STUFF -->
+	<group ns="BBB1">
+		<node pkg="snake" type="BBBMain" name="BBBMain" />
+		<node pkg="snake" type="SnakeCommander" name="SnakeCommander" output="screen" launch-prefix="gnome-terminal --geometry 50x15+0+0 --command"/>
+	</group>
+	
+	<group ns="BBB2">
+		<node pkg="snake" type="SnakeCommander" name="SnakeCommander" output="screen" launch-prefix="gnome-terminal --geometry 50x15+0+350 --command"/>
+		<node machine="BBB2" pkg="snake" type="BBBMain" name="BBBMain"/>
+	</group>
+
+	<group ns="BBB3">
+		<node pkg="snake" type="BBBMain" name="BBBMain"/>
+		<node pkg="snake" type="SnakeCommander" name="SnakeCommander" output="screen" launch-prefix="gnome-terminal --geometry 50x15+0+650 --command"/>
+	</group>
+	
 </launch>

@@ -33,7 +33,18 @@
 			</material>
 		</visual>
 	</link>
-
+	<link name="link4">
+		<visual>
+			<origin xyz=".25 0 0" rpy="0 1.57 0" />
+			<geometry>
+				<cylinder radius=".1" length="0.4" />
+			</geometry>
+			<material name="red">
+				<color rgba="1.0 0 0 .5" />
+			</material>
+		</visual>
+	</link>
+	
 	<!-- JOINTS -->
 	<joint name="joint1p" type="continuous">
 		<parent link="link1"/>
@@ -63,6 +74,19 @@
 		<axis xyz="0 0 1"/>
 	</joint>
 
+	<joint name="joint3p" type="continuous">
+		<parent link="link3"/>
+		<child link="joint3"/>
+		<origin xyz=".5 0 0" rpy="-1.57 0 0"/>
+		<axis xyz="0 0 1"/>
+	</joint>
+	<link name="joint3"/>
+	<joint name="joint3y" type="continuous">
+		<parent link="joint3"/>
+		<child link="link4"/>
+		<origin xyz="0 0 0" rpy="1.57 0 0"/>
+		<axis xyz="0 0 1"/>
+	</joint>
 
 	<!--IMU's-->
 	<link name="imu1">

@@ -66,8 +66,8 @@ void imuMatrix(const sensor_msgs::JointState msg)
 		* AngleAxisd(msg.position[1], Vector3d::UnitY())
 		* AngleAxisd(msg.position[2], Vector3d::UnitZ())
 		* Translation3d(Vector3d(0.5,0.0,0.0))
-		* AngleAxisd(msg.position[1], Vector3d::UnitY())
-		* AngleAxisd(msg.position[2], Vector3d::UnitZ());
+		* AngleAxisd(msg.position[4], Vector3d::UnitY())
+		* AngleAxisd(msg.position[5], Vector3d::UnitZ());
 	imu3Position = imu3Transform*imu3;
 	Quaternion<double> imu3Orientation(imu3Transform.rotation()); 
 	
