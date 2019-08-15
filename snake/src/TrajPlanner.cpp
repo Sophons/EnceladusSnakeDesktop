@@ -17,7 +17,7 @@ void TrajectoryPlanner::setTrajectory(double startpoint, double setpoint, double
     double dist = setpoint - startpoint;
 	num_points = abs(int( // 1.5*distanceBetweenPoints/(maxVelocity*period)
 					ceil( 
-						(1.5*(dist/(maxVelocity*period)))
+							1.5*(dist/(maxVelocity*period))
 						)
 					));
 	

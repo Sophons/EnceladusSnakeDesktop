@@ -43,12 +43,18 @@ int main(int argc, char** argv) {
 		double archPos, pPos, yPos, archEff, pEff, yEff;
 		
 		cout << ns;
-		cout << "\n Input Robot State: (JointGoalPosition/JointPosition/TorqueCommand) ";
+		cout << "\n Input Robot State: (JointGoalPosition(JGP)/JointPosition(JP)/TorqueCommand(TC)) ";
 		cin >> RobotState;
-		cout << "\n Input archPos, pPos, yPos: \n";
-		cin >> archPos >> pPos >> yPos;
-		cout << "\n Input archEff, pEff, yEff: \n";
-		cin >> archEff >> pEff >> yEff;
+		if (RobotState == "JGP" || RobotState == "JP")
+		{
+			cout << "\n Input archPos, pPos, yPos: \n";
+			cin >> archPos >> pPos >> yPos;
+		} else if (RobotState == "TC")
+		{
+			cout << "\n Input archEff, pEff, yEff: \n";
+			cin >> archEff >> pEff >> yEff;
+		}
+		
 		cout << "\n Your inputs were: " << 
 				"\n RobotState: " << RobotState << 
 				"\n Positions: " << archPos << " , " << pPos << " , "<< yPos <<
